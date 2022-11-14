@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ComposeDemo</string>
+    <string name="title_activity_compose">ComposeActivity</string>
+    <string name="title_activity_compose_hoisted">ComposeHoistedActivity</string>
+
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
+
+</resources>
