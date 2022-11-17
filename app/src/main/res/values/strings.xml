@@ -5,5 +5,10 @@
 
     <string name="show_less">Show less</string>
     <string name="show_more">Show more</string>
+    <string name="title_activity_image">ImageActivity</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_welcom">WelcomActivity</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
 
 </resources>

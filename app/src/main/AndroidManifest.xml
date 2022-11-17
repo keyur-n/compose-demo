@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.composedemo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,12 +16,86 @@
         android:theme="@style/Theme.ComposeDemo"
         tools:targetApi="31">
         <activity
-            android:name=".ComposeHoistedActivity"
+            android:name=".ui.activity.image_capture.ImageCaptureActivity"
             android:exported="false"
-            android:label="@string/title_activity_compose_hoisted"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.image_picker.ImagePickerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.dialog_demo.DialogDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.checkbox_demo.CheckboxDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.radio.RadioButtonDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.bottomsheet_demo.BottomsheetDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.bottombar_advance.BottombarDemAdvanceActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.bottombar.BottombarDemActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.navigation_voyager.VoyagerNavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
             android:theme="@style/Theme.ComposeDemo" />
         <activity
             android:name=".ComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.textviewdemo.TextViewDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.navigation.NavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_welcom"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.retrofit_demo.HomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.edittextdemo.LoginActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".DrawerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.ComposeDemo" />
+
+        <activity
+            android:name=".ui.activity.ComposeDemoActivity"
             android:exported="true"
             android:label="@string/title_activity_compose"
             android:theme="@style/Theme.ComposeDemo">
@@ -29,9 +105,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
+
     </application>
 
 </manifest>
