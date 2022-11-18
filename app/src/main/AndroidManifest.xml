@@ -16,6 +16,56 @@
         android:theme="@style/Theme.ComposeDemo"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.toggle_demo.ToggleDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.hoisting_demo.HoistingDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.constraintlayout_advance_demo.ConstraintLayoutAdvanceDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.constraint_set_demo.ConstraintSetDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.constraintlayout_demo.ConstraintLayoutDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.tab_demo.TabDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.box_demo.BoxDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.button_demo.ButtonDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.snackbar_demo.SnackbarDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.navigation_drawer_demo.NavigationDrawerDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
             android:name=".ui.activity.image_capture.ImageCaptureActivity"
             android:exported="false"
             android:label="@string/title_activity_navigation"
@@ -86,7 +136,7 @@
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.ComposeDemo" />
         <activity
-            android:name=".ui.activity.edittextdemo.LoginActivity2"
+            android:name=".ui.activity.edittextdemo.EditTextDemoActivity"
             android:exported="false" />
         <activity
             android:name=".DrawerActivity"

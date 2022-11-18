@@ -13,14 +13,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composedemo.OnboardingScreen
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import com.example.composedemo.ui.view.*
 
-class TextViewDemoActivity:ComponentActivity() {
+class TextViewDemoActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,8 +35,9 @@ class TextViewDemoActivity:ComponentActivity() {
             }
         }
     }
-    companion object{
-        fun newIntent(context: Context){
+
+    companion object {
+        fun newIntent(context: Context) {
             context.startActivity(Intent(context, TextViewDemoActivity::class.java))
         }
     }
@@ -50,22 +56,57 @@ private fun MyApp(modifier: Modifier = Modifier) {
 }
 
 
+@OptIn(ExperimentalTextApi::class)
 @Composable
 fun OnboardingScreen(
-                         modifier: Modifier = Modifier) {
+    modifier: Modifier = Modifier
+) {
     val password = remember { mutableStateOf("") }
-
+    val GradientColors = listOf(Color.Cyan, Color.Blue, Color.Red)
+    val brush = remember {
+        Brush.linearGradient(
+            colors = GradientColors
+        )
+    }
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Compose Demo",modifier = Modifier.padding(32.dp))
+        Text(
+            text = "Ellipsis Text Very long long long long long title",
+            modifier = Modifier.padding(32.dp),
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+        )
         RegularText("Welcome to the")
         BoldText("Compose!")
         ItalicText("Press Continue")
 
-        RegularButton(text = "Continue", onClicked = {  })
+        Text(
+            text = "Once you replace\nnegative thoughts with\npositive ones, you'll\nstart having positive\n results.",
+            style = TextStyle(
+                brush = brush
+            )
+        )
+        Text(
+            buildAnnotatedString {
+                append("Do not allow people to dim your shine")
+                append("negative thoughts with")
+                withStyle(
+                    SpanStyle(
+                        brush = Brush.horizontalGradient(
+                            colors = GradientColors
+                        )
+                    )
+                ) {
+                    append(" positive ones, you'll ")
+                }
+                append("start having positive ")
+                append("results.")
+            },
+        modifier = Modifier.padding(top = 16.dp))
+
     }
 }
 

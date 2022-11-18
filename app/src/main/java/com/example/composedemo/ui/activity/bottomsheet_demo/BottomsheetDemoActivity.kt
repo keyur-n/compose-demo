@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -22,6 +23,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.example.composedemo.Greeting
+import com.example.composedemo.ui.activity.image_picker.PickImageFromGallery
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import com.example.composedemo.ui.view.RegularText
 
@@ -79,3 +81,11 @@ data class BottomsheetScreen(val  names: List<String> = List(10) { "$it" }):Scre
 
 }
 
+
+@Preview
+@Composable
+fun DefaultPreview() {
+    ComposeDemoTheme {
+        Navigator(screen = BottomsheetDemoScreen)
+    }
+}

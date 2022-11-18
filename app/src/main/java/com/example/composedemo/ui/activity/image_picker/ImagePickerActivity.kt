@@ -25,6 +25,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import com.example.composedemo.ui.view.RegularText
@@ -73,5 +74,13 @@ fun PickImageFromGallery(){
             Image(bitmap = bitmap?.asImageBitmap()!!, contentDescription = null, modifier = Modifier.size(200.dp))
         }
 
+    }
+}
+
+@Preview
+@Composable
+fun DefaultPreview() {
+    ComposeDemoTheme {
+        PickImageFromGallery()
     }
 }

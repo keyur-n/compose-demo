@@ -16,18 +16,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composedemo.WelcomeActivity
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import com.example.composedemo.ui.view.DefaultTextField
 import com.example.composedemo.ui.view.PasswordTextField
-import com.example.composedemo.ui.view.RegularButton
 
-class LoginActivity2 : ComponentActivity() {
+class EditTextDemoActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -37,21 +36,21 @@ class LoginActivity2 : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LoginScreen()
+                    EditTextScreen()
                 }
             }
         }
     }
     companion object{
         fun newIntent(context: Context){
-            context.startActivity(Intent(context,LoginActivity2::class.java))
+            context.startActivity(Intent(context,EditTextDemoActivity::class.java))
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun LoginScreen(modifier: Modifier = Modifier) {
+private fun EditTextScreen(modifier: Modifier = Modifier) {
     val username = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val context=LocalContext.current
@@ -109,22 +108,44 @@ private fun LoginScreen(modifier: Modifier = Modifier) {
                 capitalization = KeyboardCapitalization.None,
                 keyboardType = androidx.compose.ui.text.input.KeyboardType.Password
             ),
-            shape = RoundedCornerShape(8.dp)
+            shape = RoundedCornerShape(8.dp),
         )
         PasswordTextField(password = password)
         DefaultTextField(textState = password)
-        RegularButton(text = "Continue", onClicked = {
-            WelcomeActivity.newIntent(context)
-        })
+        OutlinedTextField(
+            value = password.value, onValueChange = {
+                password.value = it
+
+            },
+            leadingIcon = {
+                Icon(Icons.Default.Person, contentDescription = null)
+            },
+            label = {
+                Text(text = "Password")
+            },
+            placeholder = {
+                Text(text = "Enter Password")
+            },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.None,
+                keyboardType = androidx.compose.ui.text.input.KeyboardType.Password
+            ),
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                unfocusedIndicatorColor = Color.Yellow,
+                focusedIndicatorColor = Color.Green
+            )
+        )
     }
 
 }
 
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() {
+fun EditTextScreenPreview() {
     ComposeDemoTheme {
-        LoginScreen()
+        EditTextScreen()
     }
 }

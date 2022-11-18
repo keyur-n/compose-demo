@@ -63,7 +63,7 @@ class DrawerActivity : ComponentActivity() {
                                     Icon( Icons.Filled.Search, contentDescription = "Add")
                                 }
                             }
-                        }
+                        },
                     ) {
                         it.calculateTopPadding()
 //                        it.calculateLeftPadding(LayoutDirection.Ltr)}
@@ -104,37 +104,6 @@ fun Greeting2(name: String) {
 //    )
 //}
 
-sealed class DrawerScreens(val title: String, val route: String) {
-    object Home : DrawerScreens("Home", "home")
-    object Account : DrawerScreens("Account", "account")
-    object Help : DrawerScreens( "Help", "help")
-}
-private val screens = listOf(
-    DrawerScreens.Home,
-    DrawerScreens.Account,
-    DrawerScreens.Help
-)
-@Composable
-fun Drawer(
-    modifier: Modifier = Modifier) {
-    Column(
-        modifier
-            .fillMaxSize()
-            .padding(start = 24.dp, top = 48.dp)
-    ) {
-        Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
-            contentDescription = "App icon"
-        )
-        screens.forEach { screen ->
-            Spacer(Modifier.height(24.dp))
-            Text(
-                text = screen.title,
-//                style = MaterialTheme.typography.h4
-            )
-        }
-    }
-}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(title: String = "", buttonIcon: ImageVector, onButtonClicked: () -> Unit) {
@@ -151,63 +120,4 @@ fun TopBar(title: String = "", buttonIcon: ImageVector, onButtonClicked: () -> U
         },
 //        backgroundColor = MaterialTheme.colors.primaryVariant
     )
-}
-@Composable
-fun Home(openDrawer: () -> Unit) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopBar(
-            title = "Home",
-            buttonIcon = Icons.Filled.Menu,
-            onButtonClicked = { openDrawer() }
-        )
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Home Page content here.")
-        }
-    }
-}
-
-@Composable
-fun Account(openDrawer: () -> Unit) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopBar(
-            title = "Account",
-            buttonIcon = Icons.Filled.Menu,
-            onButtonClicked = { openDrawer() }
-        )
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Account."
-//                , style = MaterialTheme.typography.h4
-            )
-        }
-    }
-}
-@Composable
-fun Help(navController: NavController) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        TopBar(
-            title = "Help",
-            buttonIcon = Icons.Filled.ArrowBack,
-            onButtonClicked = { navController.popBackStack() }
-        )
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
-//            Text(text = "Help.", style = MaterialTheme.typography.h4)
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview2() {
-    ComposeDemoTheme {
-        Drawer()
-    }
 }
