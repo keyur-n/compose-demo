@@ -16,6 +16,87 @@
         android:theme="@style/Theme.ComposeDemo"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.deeplink_demo.DeepLinkDemoActivity"
+            android:exported="true"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" >
+            <intent-filter>
+                <data android:host="pl-coding.com"
+                    android:scheme="https">
+
+                </data>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <data android:host="pl-coding.com"
+                    android:scheme="http">
+
+                </data>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.event_handler.EventHandlerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.snapping_demo.SnappingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.shadow_demo.ShadowActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.derived_state_demo.BestPracticesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.pull_refresh_demo.PullRefreshDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.viewmode_string_demo.ToastActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.viewmode_string_demo.ViewModelStringDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.pagination_demo.PaginationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.delegates_demo.DelegateActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.animation.AnimationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.chip_demo.ChipDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
             android:name=".ui.activity.toggle_demo.ToggleDemoActivity"
             android:exported="false"
             android:label="@string/title_activity_navigation"

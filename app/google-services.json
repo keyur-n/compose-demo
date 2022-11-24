@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "49054030226",
+    "firebase_url": "https://moondemo-90819-default-rtdb.firebaseio.com",
+    "project_id": "moondemo-90819",
+    "storage_bucket": "moondemo-90819.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49054030226:android:11e7831e9b11f63c2f494b",
+        "android_client_info": {
+          "package_name": "com.example.composedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49054030226-fibrcbr776lhvrtffgidlbvqc3uualsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqFzOOfEB7BnxXZyXgcDOD83W_t6Y62_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49054030226-fibrcbr776lhvrtffgidlbvqc3uualsp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49054030226:android:a70de20950198bfe2f494b",
+        "android_client_info": {
+          "package_name": "com.moonvideo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49054030226-fibrcbr776lhvrtffgidlbvqc3uualsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqFzOOfEB7BnxXZyXgcDOD83W_t6Y62_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49054030226-fibrcbr776lhvrtffgidlbvqc3uualsp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

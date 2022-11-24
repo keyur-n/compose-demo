@@ -1,12 +1,20 @@
 package com.example.composedemo.ui.activity.chip_demo
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cancel
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -24,17 +32,22 @@ class ChipDemoActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Surface {
-
+                ChipsScreen()
             }
         }
     }
-
+    companion object {
+        fun newIntent(context: Context) {
+            context.startActivity(Intent(context, ChipDemoActivity::class.java))
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ChipsScreen() {
-    val chipsList by remember { mutableStateOf(listOf("India", "New Zealand", "Australia")) }
+private fun ChipsScreen(modifier: Modifier=Modifier.padding(top = 16.dp)) {
+//    val chipsList by remember { mutableStateOf(listOf("India", "New Zealand", "Australia")) }
+    val chipsList = remember { mutableStateListOf<String>("India", "New Zealand", "Australia") }
     var chipState by remember {
         mutableStateOf("")
     }
@@ -43,33 +56,55 @@ private fun ChipsScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(text = "Suggestion Chip", modifier = modifier)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             chipsList.forEachIndexed { index, s ->
-                ChipItem(label = s, selected = chipState.equals(s), onChipChange = {
+                SuggestionChipItem(label = s, selected = chipState.equals(s), onChipChange = {
                     chipState = it
                 })
             }
         }
+        Text(text = "Assist Chip", modifier = modifier)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             chipsList.forEachIndexed { index, s ->
-                ChipItem2(label = s, selected = chipState.equals(s), onChipChange = {
+                AssistChipItem(label = s, selected = chipState.equals(s), onChipChange = {
                     chipState = it
                 })
             }
         }
+        Text(text = "Filter Chip", modifier = modifier)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             chipsList.forEachIndexed { index, s ->
-                ChipItem3(label = s, selected = chipState.equals(s), onChipChange = {
+                FilterChipItem(label = s, selected = chipState.equals(s), onChipChange = {
                     chipState = it
+                })
+            }
+        }
+        Text(text = "Elevated Filtered Chip", modifier = modifier)
+        ElevatedFilteredChipItem()
+        Text(text = "Input Chip Chip - Horizontal scrollable", modifier = modifier)
+
+        InputChipItem()
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            chipsList.forEachIndexed { index, s ->
+                InputChipItem2(label = s, selected = chipState.equals(s), onChipChange = {
+                    chipState = it
+                }, onCancel = {
+                    chipsList.removeAll {
+                        it == s
+                    }
                 })
             }
         }
@@ -78,7 +113,7 @@ private fun ChipsScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ChipItem(
+private fun SuggestionChipItem(
     label: String, selected: Boolean,
     onChipChange: (String) -> Unit
 ) {
@@ -104,7 +139,7 @@ private fun ChipItem(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ChipItem2(
+private fun AssistChipItem(
     label: String, selected: Boolean,
     onChipChange: (String) -> Unit
 ) {
@@ -129,7 +164,7 @@ private fun ChipItem2(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ChipItem3(
+private fun FilterChipItem(
     label: String, selected: Boolean,
     onChipChange: (String) -> Unit
 ) {
@@ -153,9 +188,96 @@ private fun ChipItem3(
         selected = selected
     )
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ElevatedFilteredChipItem(){
+    var selected by remember { mutableStateOf(false) }
+    ElevatedFilterChip(
+        selected = selected,
+        onClick = { selected = !selected },
+        label = { Text("Filter chip") },
+        leadingIcon = if (selected) {
+            {
+                Icon(
+                    imageVector = Icons.Filled.Done,
+                    contentDescription = "Localized Description",
+                    modifier = Modifier.size(FilterChipDefaults.IconSize)
+                )
+            }
+        } else {
+            null
+        }
+    )
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun InputChipItem(){
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
+            repeat(9) { index ->
+                var selectedState by remember { mutableStateOf(false) }
+                InputChip(
+                    modifier = Modifier.padding(start = 8.dp),
+                    selected = selectedState,
+                    onClick = { selectedState = !selectedState },
+                    label = { Text("Input Chip") },
+                    avatar = {
+                        Icon(
+                            Icons.Filled.Person,
+                            contentDescription = "Localized description",
+                            Modifier.size(InputChipDefaults.AvatarSize)
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            Icons.Filled.Cancel,
+                            contentDescription = "Localized description",
+                            Modifier.size(AssistChipDefaults.IconSize).clickable {
+
+                            }
+                        )
+                    }
+                )
+            }
+        }
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun InputChipItem2(  label: String, selected: Boolean,
+                             onChipChange: (String) -> Unit,onCancel:() -> Unit){
+
+    InputChip(
+        modifier = Modifier.padding(start = 8.dp),
+        selected = selected,
+        onClick = { onChipChange(label) },
+        label = { Text(label) },
+        avatar = {
+            Icon(
+                Icons.Filled.Person,
+                contentDescription = "Localized description",
+                Modifier.size(InputChipDefaults.AvatarSize)
+            )
+        },
+        trailingIcon = {
+            Icon(
+                Icons.Filled.Cancel,
+                contentDescription = "Localized description",
+                Modifier.size(AssistChipDefaults.IconSize).clickable {
+                    onCancel()
+                }
+            )
+        }
+    )
+}
 @Preview(showBackground = true)
 @Composable
-private fun ChipsPreview() {
+private fun ChipsScreenPreview() {
     ComposeDemoTheme {
         ChipsScreen()
     }

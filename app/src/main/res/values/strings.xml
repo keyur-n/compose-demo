@@ -10,5 +10,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_welcom">WelcomActivity</string>
     <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="err_user_name">Name must be at least %d characters long</string>
+    <string name="msg_user_name_success">Username is valid</string>
 
 </resources>

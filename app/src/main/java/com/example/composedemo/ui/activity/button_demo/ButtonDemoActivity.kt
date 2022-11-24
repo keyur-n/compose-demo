@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,112 +44,144 @@ class ButtonDemoActivity:ComponentActivity() {
 
 @Composable
 private fun ButtonScreen(){
-    Column(modifier = Modifier.fillMaxSize()) {
-        RegularButton(text = "Continue", onClicked = { })
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = RectangleShape,
-            onClick = {
-
-            }
-        ) {
-            Text("Rectangle Button")
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        item {
+            RegularButton(text = "Continue", onClicked = { })
         }
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = CircleShape,
-            onClick = {
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = RectangleShape,
+                onClick = {
 
+                }
+            ) {
+                Text("Rectangle Button")
             }
-        ) {
-            Text("Circle Button")
         }
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = CutCornerShape(16.dp),
-            onClick = {
 
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = CircleShape,
+                onClick = {
+
+                }
+            ) {
+                Text("Circle Button")
             }
-        ) {
-            Text("CutCorner Button")
         }
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = RoundedCornerShape(8.dp),
-            onClick = {
 
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = CutCornerShape(16.dp),
+                onClick = {
+
+                }
+            ) {
+                Text("CutCorner Button")
             }
-        ) {
-            Text("RoundedCorner Button")
         }
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(4.dp, Color.Green),
-            onClick = {
 
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = RoundedCornerShape(8.dp),
+                onClick = {
+
+                }
+            ) {
+                Text("RoundedCorner Button")
             }
-        ) {
-            Text("RoundedCorner Stroke Button")
         }
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = RoundedCornerShape(8.dp),
-            colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                containerColor = Color.Red,
-                contentColor = Color.White,
 
-            ),
-            onClick = {
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(4.dp, Color.Green),
+                onClick = {
 
+                }
+            ) {
+                Text("RoundedCorner Stroke Button")
             }
-        ) {
-            Text("Button Custom Color")
         }
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = RoundedCornerShape(8.dp),
-            enabled = false,
-            colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                disabledContainerColor = Color.Gray,
-                disabledContentColor = Color.Black,
 
-                ),
-            onClick = {
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    containerColor = Color.Red,
+                    contentColor = Color.White,
 
+                    ),
+                onClick = {
+
+                }
+            ) {
+                Text("Button Custom Color")
             }
-        ) {
-            Text("Disabled Button")
         }
-        //Check Property elevation
-        Button(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = CircleShape,
-            elevation = androidx.compose.material3.ButtonDefaults.buttonElevation(pressedElevation = 10.dp),
-            onClick = {
 
-            }
-        ) {
-            Text("Elevation On Button Click")
-        }
-        TextButton(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = CircleShape,
-            onClick = {
+        item {
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = RoundedCornerShape(8.dp),
+                enabled = false,
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    disabledContainerColor = Color.Gray,
+                    disabledContentColor = Color.Black,
 
-            }
-        ) {
-            Text("TextButton")
-        }
-        OutlinedButton(
-            modifier = Modifier.padding(vertical = 8.dp),
-            shape = CircleShape,
-            onClick = {
+                    ),
+                onClick = {
 
+                }
+            ) {
+                Text("Disabled Button")
             }
-        ) {
-            Text("OutlinedButton")
         }
+
+        item {
+            //Check Property elevation
+            Button(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = CircleShape,
+                elevation = androidx.compose.material3.ButtonDefaults.buttonElevation(pressedElevation = 10.dp),
+                onClick = {
+
+                }
+            ) {
+                Text("Elevation On Button Click")
+            }
+        }
+
+        item {
+            TextButton(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = CircleShape,
+                onClick = {
+
+                }
+            ) {
+                Text("TextButton")
+            }
+        }
+
+        item {
+            OutlinedButton(
+                modifier = Modifier.padding(vertical = 8.dp),
+                shape = CircleShape,
+                onClick = {
+
+                }
+            ) {
+                Text("OutlinedButton")
+            }
+        }
+
     }
 
 }
