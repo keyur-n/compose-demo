@@ -70,7 +70,7 @@ private fun ConstraintGuideline() {
 
             Text(text = "Text With Guideline top",
                 modifier = Modifier.constrainAs(username) {
-                    start.linkTo(parent.start, margin = 8.dp)
+                    start.linkTo(parent.start)
                     top.linkTo(createGuideTop)
                 }
             )

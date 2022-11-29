@@ -1,11 +1,13 @@
 package com.example.composedemo.ui.view
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.composedemo.R
 
 val firaSansFamily = FontFamily(
@@ -30,4 +32,15 @@ fun BoldText(text:String){
 @Composable
 fun ItalicText(text:String){
     Text(text,fontFamily = firaSansFamily, fontWeight = FontWeight.Normal,fontStyle = FontStyle.Italic)
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ButtonPreview(){
+    Column() {
+        RegularText(text = "Regular Text")
+        BoldText(text = "Regular Text")
+        ItalicText(text = "Regular Text")
+    }
+
 }

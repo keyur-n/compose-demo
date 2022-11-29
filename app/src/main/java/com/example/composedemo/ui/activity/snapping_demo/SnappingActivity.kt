@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.key
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,10 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.ui.res.imageResource
 import com.example.composedemo.R
-import com.example.composedemo.ui.activity.shadow_demo.ShadowActivity
-import com.example.composedemo.ui.activity.shadow_demo.ShadowDemoScreen
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import kotlinx.coroutines.launch
 import kotlin.math.abs
@@ -48,7 +44,7 @@ class SnappingActivity : ComponentActivity() {
     }
 }
 
-val dataList = mutableListOf(
+val imageList = mutableListOf(
     R.drawable.ic_snap_1,
     R.drawable.ic_snap_2,
     R.drawable.ic_snap_3,
@@ -82,7 +78,7 @@ private fun SnappingDemoScreen() {
                 scaleCalculator = { offset, halfRowWidth ->
                     (1f - minOf(1f, abs(offset).toFloat() / halfRowWidth) * 0.45f)
                 },
-                items = dataList,
+                items = imageList,
                 itemWidth = 80.dp,
                 onSelect = {
 

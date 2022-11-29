@@ -37,7 +37,7 @@ class WelcomeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WelcomeScreen("Android")
+                    WelcomeScreen()
                 }
             }
         }
@@ -66,7 +66,7 @@ val dataList = listOf<WelcomeData>(
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WelcomeScreen(name: String) {
+fun WelcomeScreen() {
     val pagerState = rememberPagerState()
     val context = LocalContext.current
 
@@ -123,6 +123,6 @@ fun PageUI(welcomeData: WelcomeData) {
 @Composable
 fun DefaultPreview4() {
     ComposeDemoTheme {
-        WelcomeScreen("Android")
+        WelcomeScreen()
     }
 }

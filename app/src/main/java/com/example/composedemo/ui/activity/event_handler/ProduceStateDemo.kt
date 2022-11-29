@@ -21,9 +21,8 @@ fun ProduceStateSnackbarSolution(){
         value=4
     }
     Column() {
-        Text(text = "Snackbar will be removed immediately when counter condition changed")
         Button(onClick = {  }) {
-            Text(text = "Click me $counter")
+            Text(text = "Click me ${counter.value}")
         }
         Button(onClick = {  }) {
             Text(text = "Also check code for other demo of Produce State")

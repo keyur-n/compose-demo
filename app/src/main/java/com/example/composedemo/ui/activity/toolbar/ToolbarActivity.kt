@@ -1,29 +1,20 @@
-package com.example.composedemo
+package com.example.composedemo.ui.activity.toolbar
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.state
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 
-class DrawerActivity : ComponentActivity() {
+class ToolbarActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +30,7 @@ class DrawerActivity : ComponentActivity() {
                     Scaffold(topBar = {
                         TopAppBar(
                             title = {
-                                Text(text = "Drawer Demo")
+                                Text(text = "Toolbar Demo")
                             },
                             navigationIcon = {
                                 IconButton(onClick = { /*TODO*/ }) {
@@ -75,7 +66,7 @@ class DrawerActivity : ComponentActivity() {
     }
     companion object{
         fun newIntent(context:Context){
-            context.startActivity(Intent(context,DrawerActivity::class.java))
+            context.startActivity(Intent(context,ToolbarActivity::class.java))
         }
     }
 }

@@ -55,28 +55,19 @@ fun SnackbarScreen(scaffoldState: ScaffoldState){
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val viewModel= viewModel<MaiViewModel>()
-    var error= remember<UiText?> {
-        null
-    }
-    if (error!=null){
-        SideEffect {
-            Toast.makeText(context, "Toast", Toast.LENGTH_SHORT).show()
-        }
 
-
-    }
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(20.dp),
        ) {
         Button(onClick = {
 
-            error=viewModel.checkValidation("user")
             val msg=viewModel.checkValidation("user")
 
             scope.launch {
                 Toast.makeText(context,msg.asString2(context),Toast.LENGTH_LONG).show()
-                scaffoldState.snackbarHostState.showSnackbar(msg.asString2(context),actionLabel = "Done",SnackbarDuration.Long)
+                scaffoldState.snackbarHostState.showSnackbar(msg.asString2(context),
+                    actionLabel = "Done",SnackbarDuration.Long)
             }
         }) {
             Text(text = "Check validation")

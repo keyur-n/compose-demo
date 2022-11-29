@@ -72,5 +72,4 @@ class AnalyticsLoggerImpl():AnalyticsLogger,LifecycleEventObserver{
             else -> Unit
         }
     }
-
 }

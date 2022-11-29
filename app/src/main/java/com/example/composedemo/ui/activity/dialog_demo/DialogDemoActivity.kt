@@ -276,27 +276,3 @@ fun DatePickerDialogScreen() {
 
 }
 
-@Composable
-fun TimerPickerScreen() {
-
-    // Fetching local context
-    val mContext = LocalContext.current
-
-    // Declaring and initializing a calendar
-    val mCalendar = Calendar.getInstance()
-    val mHour = mCalendar[Calendar.HOUR_OF_DAY]
-    val mMinute = mCalendar[Calendar.MINUTE]
-
-    // Value for storing time as a string
-    val mTime = remember { mutableStateOf("") }
-
-    // Creating a TimePicker dialod
-    val mTimePickerDialog = TimePickerDialog(
-        mContext,
-        { _, _: Int, _: Int ->
-            mTime.value = "$mHour:$mMinute"
-        }, mHour, mMinute, false
-    )
-    mTimePickerDialog.show()
-
-}

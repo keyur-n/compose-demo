@@ -5,23 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.composedemo.R
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 
-class HoistingDemoActivity:ComponentActivity() {
+class HoistingDemoActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeDemoTheme {
                 // A surface container using the 'background' color from the theme
-                HoistingScreen()
+                ParentScreen()
             }
         }
     }
@@ -33,34 +35,49 @@ class HoistingDemoActivity:ComponentActivity() {
     }
 }
 
-
 @Composable
-private fun HoistingScreen(modifier: Modifier = Modifier) {
-
-    Surface(
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.background
-    ) {
-        ParentScreen()
-    }
-}
-
-@Composable
-fun ParentScreen(){
+fun ParentScreen() {
     //Always user state in parent composable and pass it to child composable3
-    val name by remember {
+    var name by remember {
         mutableStateOf("")
     }
     ChildScreen(name = name, onChange = {
+        name = it
 
     })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChildScreen(name:String,onChange:(String) ->Unit){
+fun ChildScreen(name: String, onChange: (String) -> Unit) {
+
     TextField(value = name, onValueChange = {
         onChange(it)
+    })
+}
+
+@Composable
+fun ParentScreenStateLess() {
+    //Always user state in parent composable and pass it to child composable3
+    Column() {
+        Text(text = "adsas")
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "adasasdqwe")
+        }
+        Image(painter = painterResource(id = R.drawable.ic_welcome_1), contentDescription = null)
+        ChildScreenStateFul()
+    }
+
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ChildScreenStateFul() {
+    var name by remember {
+        mutableStateOf("")
+    }
+    TextField(value = name, onValueChange = {
+        name = it
     })
 }
 
@@ -68,6 +85,6 @@ fun ChildScreen(name:String,onChange:(String) ->Unit){
 @Composable
 fun OnboardingPreview() {
     ComposeDemoTheme {
-        HoistingScreen()
+        ParentScreen()
     }
 }

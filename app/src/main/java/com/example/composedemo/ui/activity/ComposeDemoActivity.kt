@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composedemo.*
 import com.example.composedemo.ui.activity.animation.AnimationActivity
+import com.example.composedemo.ui.activity.animationnavigation.AnimationNavigationActivity
 import com.example.composedemo.ui.activity.bottombar.BottombarDemActivity
 import com.example.composedemo.ui.activity.bottombar_advance.BottombarDemAdvanceActivity
 import com.example.composedemo.ui.activity.bottomsheet_demo.BottomsheetDemoActivity
@@ -34,6 +35,7 @@ import com.example.composedemo.ui.activity.edittextdemo.EditTextDemoActivity
 import com.example.composedemo.ui.activity.event_handler.EventHandlerActivity
 import com.example.composedemo.ui.activity.hoisting_demo.HoistingDemoActivity
 import com.example.composedemo.ui.activity.image_capture.ImageCaptureActivity
+import com.example.composedemo.ui.activity.image_demo.ImageDemoActivity
 import com.example.composedemo.ui.activity.image_picker.ImagePickerActivity
 import com.example.composedemo.ui.activity.navigation.NavigationActivity
 import com.example.composedemo.ui.activity.navigation_drawer_demo.NavigationDrawerDemoActivity
@@ -48,6 +50,7 @@ import com.example.composedemo.ui.activity.snapping_demo.SnappingActivity
 import com.example.composedemo.ui.activity.tab_demo.TabDemoActivity
 import com.example.composedemo.ui.activity.textviewdemo.TextViewDemoActivity
 import com.example.composedemo.ui.activity.toggle_demo.ToggleDemoActivity
+import com.example.composedemo.ui.activity.toolbar.ToolbarActivity
 import com.example.composedemo.ui.activity.viewmode_string_demo.ViewModelStringDemoActivity
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 
@@ -85,6 +88,7 @@ sealed class DemoData(val name: String) {
     object Checkbox : DemoData("Checkbox")
     object Toggle : DemoData("Toggle")
     object Dialog : DemoData("Progress Dialog & Alert Dialog")
+    object ImageView : DemoData("Image")
     object ImagePicker : DemoData("ImagePicker")
     object ImageCapture : DemoData("Image Capture")
     object Snackbar : DemoData("Snackbar")
@@ -99,6 +103,7 @@ sealed class DemoData(val name: String) {
     object Chip : DemoData("Chip")
     object DeepLink : DemoData("DeepLink")
     object Animation : DemoData("Animation")
+    object AnimationNavigation : DemoData("Animation - Navigation")
     object Delegation : DemoData("Delegation - Look into the code for best practices")
     object Pagination : DemoData("Pagination")
     object PullRefresh : DemoData("Pull Refresh (Swipe to Refresh)")
@@ -130,6 +135,7 @@ val dataList = mutableListOf(
     DemoData.Bottomsheet,
 
     DemoData.Dialog,
+    DemoData.ImageView,
     DemoData.ImagePicker,
     DemoData.ImageCapture,
     DemoData.Box,
@@ -140,12 +146,13 @@ val dataList = mutableListOf(
 
     DemoData.DeepLink,
     DemoData.Animation,
+    DemoData.AnimationNavigation,
     DemoData.Delegation,
     DemoData.Retrofit,
     DemoData.Pagination,
     DemoData.PullRefresh,
     DemoData.ViewModelStringResource,
-    DemoData.BestPractices,
+//    DemoData.BestPractices,
     DemoData.Shadow,
     DemoData.EventHandler,
 
@@ -188,7 +195,7 @@ private fun DemoRaw(names: DemoData) {
                     WelcomeActivity.newIntent(context)
                 }
                 DemoData.NavigationToolBar -> {
-                    DrawerActivity.newIntent(context)
+                    ToolbarActivity.newIntent(context)
                 }
                 DemoData.NavigationToOtherScreen -> {
                     NavigationActivity.newIntent(context)
@@ -280,10 +287,16 @@ private fun DemoRaw(names: DemoData) {
                 DemoData.EventHandler -> {
                     EventHandlerActivity.newIntent(context)
                 }
+                DemoData.ImageView -> {
+                    ImageDemoActivity.newIntent(context)
+                }
+ DemoData.AnimationNavigation -> {
+                    AnimationNavigationActivity.newIntent(context)
+                }
 
             }
         }) {
-        Text(text = names.name, Modifier.padding(16.dp))
+        Text(text = names.name, modifier = Modifier.padding(16.dp))
     }
 }
 

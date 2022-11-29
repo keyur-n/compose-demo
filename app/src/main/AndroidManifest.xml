@@ -42,6 +42,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activity.animationnavigation.AnimationNavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".ui.activity.image_demo.ImageDemoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
             android:name=".ui.activity.event_handler.EventHandlerActivity"
             android:exported="false"
             android:label="@string/title_activity_navigation"
@@ -220,7 +230,7 @@
             android:name=".ui.activity.edittextdemo.EditTextDemoActivity"
             android:exported="false" />
         <activity
-            android:name=".DrawerActivity"
+            android:name=".ui.activity.toolbar.ToolbarActivity"
             android:exported="false"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.ComposeDemo" />

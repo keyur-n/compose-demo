@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -91,5 +92,40 @@ fun DefaultTextField(modifier : Modifier = Modifier, textState: MutableState<Str
             disabledTextColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent
         )
+    )
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun UsernameTextField(modifier : Modifier = Modifier, textState: MutableState<String>){
+    TextField(
+        value = textState.value,
+        onValueChange = {
+            textState.value=it
+        },
+        modifier = modifier
+//                .fillMaxWidth()
+//                .padding(vertical = 4.dp)
+        ,
+        shape = RoundedCornerShape(218.dp),
+        trailingIcon = {
+            Icon(Icons.Filled.Add, "", tint = Blue)
+        },
+        colors = TextFieldDefaults.textFieldColors(
+//                backgroundColor = Color.Blue,
+            focusedIndicatorColor =  Color.Blue, //hide the indicator
+            unfocusedIndicatorColor = Color.Blue,
+            containerColor = Color.Transparent,
+            disabledTextColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        ),
+        leadingIcon = {
+            Icon(Icons.Default.Person, contentDescription = null)
+        },
+        label = {
+            Text(text = "Username")
+        },
+        placeholder = {
+            Text(text = "Enter username")
+        }
     )
 }

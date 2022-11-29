@@ -28,7 +28,10 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import com.example.composedemo.R
 import com.example.composedemo.ui.theme.ComposeDemoTheme
+import com.example.composedemo.ui.view.DefaultTextField
+import com.example.composedemo.ui.view.PasswordTextField
 import com.example.composedemo.ui.view.RegularButton
+import com.example.composedemo.ui.view.UsernameTextField
 
 class ConstraintSetDemoActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +40,8 @@ class ConstraintSetDemoActivity : ComponentActivity() {
             ComposeDemoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier,
-                    color = MaterialTheme.colorScheme.background
+//                    modifier = Modifier,
+//                    color = MaterialTheme.colorScheme.background
                 ) {
                     ConstraintSetScreen(modifier = Modifier.fillMaxSize())
                 }
@@ -59,9 +62,6 @@ class ConstraintSetDemoActivity : ComponentActivity() {
 private fun ConstraintSetScreen(modifier: Modifier = Modifier) {
     val username = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
-    var passwordVisible by rememberSaveable { mutableStateOf(false) }
-
-    val context = LocalContext.current
 
     val constraint = ConstraintSet {
         val etUsername = createRefFor("username")
@@ -81,73 +81,26 @@ private fun ConstraintSetScreen(modifier: Modifier = Modifier) {
             end.linkTo(etPassword.end)
         }
     }
+
+
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         ConstraintLayout(
             constraintSet = constraint
         ) {
-            TextField(
+            UsernameTextField(
                 modifier = Modifier
-                    .layoutId("username"),
-                value = username.value, onValueChange = {
-                    username.value = it
-                },
-                leadingIcon = {
-                    Icon(Icons.Default.Person, contentDescription = null)
-                },
-                label = {
-                    Text(text = "Username")
-                },
-                placeholder = {
-                    Text(text = "Enter username")
-                }
+                    .layoutId("username"), textState = username
             )
-            TextField(value = password.value, onValueChange = {
-                password.value = it
-
-            }, leadingIcon = {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_password),
-                    contentDescription = null
-                )/*Icon(painterResource(id = R.mipmap.ic_launcher), contentDescription = null)*/
-            }, trailingIcon = {
-                val image = if (passwordVisible)
-                    Icons.Filled.Visibility
-                else Icons.Filled.VisibilityOff
-                val description = if (passwordVisible) "Hide password" else "Show password"
-
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(imageVector = image, description)
-                }
-            },
-                label = {
-                    Text(text = "Password")
-                },
-                placeholder = {
-                    Text(text = "Enter Password")
-                },
-                keyboardOptions = KeyboardOptions(
-                    capitalization = KeyboardCapitalization.None,
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done,
-                ),
-                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                singleLine = true,
+            PasswordTextField(
                 modifier = Modifier
-                    .layoutId("password"),
-                colors = TextFieldDefaults.textFieldColors(
-//                backgroundColor = Color.Blue,
-                    focusedIndicatorColor = Color.Transparent, //hide the indicator
-                    unfocusedIndicatorColor = Color.Transparent
-                )
+                    .layoutId("password"), password = password
             )
+
             Button(
-                onClick = {
-
-                },
+                onClick = {  },
                 modifier = Modifier
                     .layoutId("login"),
-
-            ) {
+                ) {
                 Text(text = "Login")
             }
         }
@@ -160,6 +113,11 @@ private fun ConstraintSetScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun ConstraintSetPreview() {
     ComposeDemoTheme {
-        ConstraintSetScreen(Modifier.fillMaxSize())
+        Surface(
+//                    modifier = Modifier,
+//                    color = MaterialTheme.colorScheme.background
+        ) {
+            ConstraintSetScreen(modifier = Modifier.fillMaxSize())
+        }
     }
 }

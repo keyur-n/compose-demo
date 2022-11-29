@@ -17,13 +17,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-import com.example.composedemo.DrawerActivity
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composedemo.model.Entry
 import com.example.composedemo.network.ApiState
+import com.example.composedemo.ui.activity.toolbar.ToolbarActivity
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import com.example.composedemo.ui.view.BoldText
 import com.example.composedemo.ui.view.RegularText
-import com.example.composedemo.viewmodel.HomeViewModel
 
 class HomeActivity : ComponentActivity() {
     val homeViewModel: HomeViewModel by lazy { ViewModelProvider(this).get(HomeViewModel::class.java) }
@@ -51,8 +51,10 @@ class HomeActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GetEntryData(homeViewModel: HomeViewModel) {
+fun GetEntryData(homeViewModel2: HomeViewModel) {
+    val homeViewModel: HomeViewModel = viewModel<HomeViewModel>()
 
     when (val result = homeViewModel.listEntry.value) {
         ApiState.Empty -> {
@@ -76,7 +78,20 @@ fun GetEntryData(homeViewModel: HomeViewModel) {
         is ApiState.Success -> {
             LazyColumn {
                 items(items = result.list.toList()) { name ->
-                    EntryRow(name)
+                    val context=LocalContext.current
+                    Card(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth(),
+                        onClick = {
+                            ToolbarActivity.newIntent(context = context)
+                        }
+                    ) {
+                        Column(modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)) {
+                            BoldText(text = name.category)
+                            RegularText(text = name.description)
+                        }
+                    }
                 }
             }
         }
@@ -92,7 +107,7 @@ fun EntryRow(entry: Entry) {
             .padding(8.dp)
             .fillMaxWidth(),
         onClick = {
-            DrawerActivity.newIntent(context = context)
+            ToolbarActivity.newIntent(context = context)
         }
     ) {
         Column(modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)) {
@@ -100,13 +115,12 @@ fun EntryRow(entry: Entry) {
             RegularText(text = entry.description)
         }
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
     ComposeDemoTheme {
-        GetEntryData(homeViewModel = HomeViewModel())
+        GetEntryData(homeViewModel2 = HomeViewModel())
     }
 }

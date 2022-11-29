@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.composedemo.R
-import com.example.composedemo.TopBar
+import com.example.composedemo.ui.activity.toolbar.TopBar
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 import kotlinx.coroutines.launch
 
@@ -34,7 +34,7 @@ class NavigationDrawerDemoActivity: ComponentActivity() {
                     val scaffoldState = rememberScaffoldState()
                     Scaffold(scaffoldState=scaffoldState,
                     drawerContent = {
-                        Drawer()
+                        Drawer(scaffoldState = scaffoldState)
                     }){
                         it.calculateTopPadding()
                         DrawerScreen(scaffoldState = scaffoldState)
@@ -78,8 +78,10 @@ private val screens = listOf(
 )
 @Composable
 fun Drawer(
+    scaffoldState: ScaffoldState,
     modifier: Modifier = Modifier
 ) {
+    val scope = rememberCoroutineScope()
     Column(
         modifier
             .fillMaxSize()
@@ -97,10 +99,14 @@ fun Drawer(
 //            )
 //        }
         Home {
-
+            scope.launch {
+                scaffoldState.drawerState.close()
+            }
         }
         Account {
-
+            scope.launch {
+                scaffoldState.drawerState.close()
+            }
         }
         Help(navController = rememberNavController())
     }

@@ -53,7 +53,7 @@ private fun ButtonScreen(){
                 modifier = Modifier.padding(vertical = 8.dp),
                 shape = RectangleShape,
                 onClick = {
-
+                    //TODO:Goto New screen
                 }
             ) {
                 Text("Rectangle Button")
